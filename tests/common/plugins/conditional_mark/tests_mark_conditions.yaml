@@ -2549,6 +2549,7 @@ generic_config_updater/test_bgp_prefix.py::test_bgp_prefix_tc1_suite:
     conditions:
       - "platform in ['x86_64-8122_64eh_o-r0', 'x86_64-8122_64ehf_o-r0']"
       - "asic_type in ['vs'] and https://github.com/sonic-net/sonic-mgmt/issues/18445"
+      - "'isolated' in topo_name"
 
 generic_config_updater/test_bgp_speaker.py::test_bgp_speaker_tc1_test_config:
   xfail:
@@ -5091,6 +5092,15 @@ test_pktgen.py:
     reason: "No need in M0/Mx/M1"
     conditions:
       - "topo_type in ['m0', 'mx', 'm1']"
+
+#######################################
+#####         pretest             #####
+#######################################
+test_pretest.py::test_disable_rsyslog_rate_limit:
+  skip:
+    reason: "We don't need to disable the rate limit on vs testbed"
+    conditions:
+      - "asic_type in ['vs']"
 
 #######################################
 #####         vs_chassis          #####
